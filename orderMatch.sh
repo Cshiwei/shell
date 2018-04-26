@@ -4,9 +4,6 @@ DBUSERNAME='order_bj'
 DBPASSWORD='dpvYprwh69MN'
 DBHOST='172.16.0.96'
 
-res=`mysql -h $DBHOST -u $DBUSERNAME -p$DBPASSWORD << EOF
-use products_center_v1;
-SELECT * FROM v3_orders LIMIT 1;
-exit
-EOF`
-echo $res > log.txt 2>&1
+mysql -h $DBHOST -u $DBUSERNAME -p$DBPASSWORD << EOF
+use products_center_v1;SELECT * FROM v3_orders LIMIT 1;exit
+EOF
