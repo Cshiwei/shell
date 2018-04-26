@@ -4,5 +4,6 @@ DBUSERNAME='order_bj'
 DBPASSWORD='pdpvYprwh69MN'
 DBHOST='172.16.0.96'
 
-mysql -h 172.16.0.96 -u order_bj -ppdpvYprwh69MN
+#mysql -h 172.16.0.96 -u order_bj -ppdpvYprwh69MN
 #mysql -h $DBHOST -u $DBUSERNAME -p$DBPASSWORD
+mysql -h 172.16.0.96 -u order_bj -pdpvYprwh69MN
