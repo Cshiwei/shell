@@ -9,4 +9,4 @@ use products_center_v1;
 SELECT * FROM v3_orders LIMIT 1;
 exit
 EOF`
-echo res > log.txt 2>&1
+echo $res > log.txt 2>&1
