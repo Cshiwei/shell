@@ -7,5 +7,5 @@ DBHOST='172.16.0.96'
 mysql -h $DBHOST -u $DBUSERNAME -p$DBPASSWORD << EOF
 use products_center_v1;
 SELECT * FROM v3_orders LIMIT 1;
-exit;
+exit
 EOF
