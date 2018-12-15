@@ -1,0 +1,36 @@
+#!/usr/bin/expect
+set script_path [ file dirname [ file normalize [ info script ] ] ] 
+source $script_path/cfg 
+cfg::parse_file $script_path/jump.ini
+set host [lindex $argv 0]
+if { [string length $host] == 0 } {
+  set fp [open "$script_path/jump.ini" r]
+  while { [gets $fp data] >= 0 } {
+     puts $data
+  }
+  close $fp
+  exit
+}
+
+set default_key $cfg::DEFAULT(key)
+
+set jump_server_host $cfg::JUMP_SERVER(host)
+set jump_server_port $cfg::JUMP_SERVER(port)
+set jump_server_user $cfg::JUMP_SERVER(user)
+
+set default_key $cfg::DEFAULT(key)
+set config_key [cfg::getvar key $host]
+set config_key_length [string length $config_key]
+
+if { $config_key_length > 0 } {
+	set key $config_key
+} else {
+	set key $default_key
+}
+
+set ip [cfg::getvar host $host] 
+set user [cfg::getvar user $host] 
+
+spawn  ssh -p $jump_server_port $jump_server_user@$jump_server_host
+expect  "$*" { send "ssh -i $key $user@$ip\r" }
+interact
